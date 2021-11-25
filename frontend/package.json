@@ -44,6 +44,7 @@
     "@testing-library/react": "^11.2.6",
     "cypress": "^9.1.0",
     "eslint-plugin-cypress": "^2.11.3",
-    "eslint-plugin-jest": "^24.3.6"
+    "eslint-plugin-jest": "^24.3.6",
+    "har-validator": "^5.1.5"
   }
 }
