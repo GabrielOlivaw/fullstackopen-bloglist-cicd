@@ -1,0 +1,32 @@
+name: Bloglist pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+  bloglist_pipeline:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install backend packages
+        run: npm install
+        
+      - name: Install frontend packages
+        working-directory: ./frontend
+        run: npm install
+        
+      - name: Frontend e2e testing
+        uses: cypress-io/github-action@v2
+        with:
+          command: cd frontend && npm run test:e2e
+          start: npm run start:test
+          wait-on: http://localhost:3003
