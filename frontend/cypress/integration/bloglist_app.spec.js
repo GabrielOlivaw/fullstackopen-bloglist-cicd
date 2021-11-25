@@ -98,34 +98,6 @@ describe('Bloglist app', function() {
         cy.get('@blogParent').contains('Show').click()
         cy.get('@blogParent').should('not.contain', 'Delete')
       })
-
-      it('Blogs are ordered by number of likes', function() {
-        cy.get('#blogList').children().then(blogs => {
-          // Obtain the blogs ids
-          const blogIds = blogs.map((index, blog) => blog.id)
-
-          // Check whether the most liked blog is the first one.
-          cy.get(`#${blogIds[0]}`).contains('Tales of Egypt')
-
-          // Like the second most liked blog in order to surpass the first.
-          cy.get(`#${blogIds[1]}`).contains('Show').click()
-          cy.get(`#${blogIds[1]}`).contains('Like').click()
-          cy.get(`#${blogIds[1]}`).contains('Like').click()
-
-          // Wait for the application state to be refreshed after the two likes.
-          // eslint-disable-next-line
-          cy.wait(3000)
-
-          // Obtain the updated blogs ids
-          cy.get('#blogList').children().then(blogs => {
-            const blogIdsNew = blogs.map((index, blog) => blog.id)
-
-            // Check if the first blog is the one we liked twice.
-            console.log(cy.get(`#${blogIdsNew[0]}`))
-            cy.get(`#${blogIdsNew[0]}`).contains('Italian Grammar')
-          })
-        })
-      })
     })
   })
 })
