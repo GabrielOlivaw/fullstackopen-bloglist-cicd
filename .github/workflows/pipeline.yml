@@ -30,6 +30,6 @@ jobs:
       - name: Frontend e2e testing
         uses: cypress-io/github-action@v2
         with:
-          command: cd frontend && npm run test:e2e
+          command: npm run test:e2e
           start: npm run start:test
           wait-on: http://localhost:3003
