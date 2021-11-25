@@ -25,9 +25,7 @@ jobs:
         run: npm install
       
       - name: Build frontend files
-        run: |
-          npm run build:front
-          pwd
+        run: npm run build:front
         
       - name: Frontend e2e testing
         uses: cypress-io/github-action@v2
