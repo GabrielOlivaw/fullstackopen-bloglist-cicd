@@ -27,6 +27,10 @@ jobs:
       - name: Build frontend files
         run: npm run build:front
         
+      - name: Frontend lint
+        working-directory: ./frontend
+        run: npm run eslint
+        
       - name: Frontend e2e testing
         uses: cypress-io/github-action@v2
         env:
@@ -36,3 +40,15 @@ jobs:
           command: npm run test:e2e
           start: npm run start:test
           wait-on: http://localhost:3003
+      
+      - name: Heroku deploy
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        if: ${{ github.event_name == 'push' && !contains(env.COMMIT_MESSAGES, '#skip') }}
+        uses: akhileshns/heroku-deploy@79ef2ae4ff9b897010907016b268fd0f88561820
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "immense-basin-88980"
+          heroku_email: "gabrodzt@gmail.com"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
