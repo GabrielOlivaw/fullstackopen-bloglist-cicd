@@ -55,7 +55,7 @@ jobs:
 
   version_tag:
     runs-on: ubuntu-18.04
-    needs: simple_deployment_pipeline
+    needs: bloglist_pipeline
     steps:
       - uses: actions/checkout@v2
         env:
