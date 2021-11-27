@@ -150,6 +150,7 @@ const App = () => {
           </div>
         </div>
       }
+      <p>Powered by GitHub Actions</p>
     </div>
   )
 }

@@ -111,6 +111,8 @@ describe('Bloglist app', function() {
           cy.get(`#${blogIds[1]}`).contains('Show').click()
           cy.get(`#${blogIds[1]}`).contains('Like').click()
           cy.get(`#${blogIds[1]}`).contains('Like').click()
+
+          // Don't trust cy.wait(), it doesn't work properly in a CI environment.
         })
 
         cy.get('#blogList').eq(0).contains('Italian Grammar')
