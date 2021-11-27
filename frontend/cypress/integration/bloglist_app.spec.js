@@ -111,19 +111,9 @@ describe('Bloglist app', function() {
           cy.get(`#${blogIds[1]}`).contains('Show').click()
           cy.get(`#${blogIds[1]}`).contains('Like').click()
           cy.get(`#${blogIds[1]}`).contains('Like').click()
-
-          // Wait for the application state to be refreshed after the two likes.
-          // eslint-disable-next-line
-          //cy.wait(1000)
-
-          // Obtain the updated blogs ids
-          cy.get('#blogList').children().then(blogs => {
-            const blogIdsNew = blogs.map((index, blog) => blog.id)
-
-            // Check if the first blog is the one we liked twice.
-            cy.get(`#${blogIdsNew[0]}`).contains('Italian Grammar')
-          })
         })
+
+        cy.get('#blogList').eq(0).contains('Italian Grammar')
       })
     })
   })
