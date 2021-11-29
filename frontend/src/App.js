@@ -130,7 +130,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Bloglist application</h1>
+      <h1>Bloglist application CI/CD</h1>
       <Notification notification={notification} />
       {user === null ?
         loginForm() :
@@ -150,7 +150,7 @@ const App = () => {
           </div>
         </div>
       }
-      <p>Powered by GitHub Actions</p>
+      <p>Powered by GitHub Actions 2021</p>
     </div>
   )
 }
